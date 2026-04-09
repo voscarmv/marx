@@ -115,3 +115,10 @@ Si en un subsector el resultado es:
 * **HRS_PLUSVALIA_NETA:** 6.0 hrs
 
 **Conclusión:** El trabajador "se paga solo" en los primeros 90 minutos de su turno; los siguientes 30 minutos mantiene la fábrica, y las últimas **6 horas** genera riqueza pura para el accionista o dueño.
+
+Estos datos reales para México están en el archivo `datos.csv` en este repositorio.
+
+## 5. Fuentes
+
+- https://www.inegi.org.mx/programas/ce/2024/#datos_abiertos
+- https://www.inegi.org.mx/contenidos/programas/ce/2024/datosabiertos/conjunto_de_datos_ce_nac_2024_csv.zip
