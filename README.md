@@ -116,6 +116,8 @@ Si en un subsector el resultado es:
 
 **Conclusión:** El trabajador "se paga solo" en los primeros 90 minutos de su turno; los siguientes 30 minutos mantiene la fábrica, y las últimas **6 horas** genera riqueza pura para el accionista o dueño.
 
+Estos datos reales para México están en el archivo `datos.csv` en este repositorio.
+
 ## 5. Fuentes
 
 - https://www.inegi.org.mx/programas/ce/2024/#datos_abiertos
