@@ -2,6 +2,35 @@
 
 Este documento describe las métricas calculadas para analizar la relación entre el trabajo, el capital y la plusvalía en los subsectores económicos de México, utilizando el esquema de base de datos del CE2024.
 
+## Instalación y Configuración
+
+1. **Requisitos:** Asegúrate de tener instalado [Node.js](https://nodejs.org/).
+2. **Descargar Dependencias:**
+   Ejecuta el siguiente comando para instalar las librerías necesarias de SQLite3 y de parseo veloz de streams:
+   ```bash
+   npm install sqlite3 csv-parser
+   ```
+3. **Colocar Datos Fuente:** Asegúrate de que la carpeta de datos extraídos del INEGI (`conjunto_de_datos_ce_nac_2024_csv`) exista en la ruta base del proyecto.
+
+## Ejecución del Análisis
+
+El proyecto consta de dos fases. Puedes correr todo automáticamente usando el script proporcionado:
+```bash
+bash run.sh
+```
+
+Alternativamente, el proceso paso a paso es:
+1. **Cargar los datos masivos (Paso 1):** Construye la base relacional local `datos.db` a partir de los CSV del censo mediante flujos (streams) en memoria de alta eficiencia.
+   ```bash
+   node load.js
+   ```
+2. **Ejecutar Modelo (Paso 2):** Lee la base de datos aplicando las métricas de este diccionario y genera un reporte tabular directo en CSV.
+   ```bash
+   node query.js > reporte.csv
+   ```
+
+---
+
 ## 1. Variables Fuente (INEGI)
 Para los cálculos se utilizan las siguientes columnas base:
 
