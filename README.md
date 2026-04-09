@@ -1,4 +1,4 @@
-# Diccionario de Análisis de Economía Política (Censo Económico 2024)
+# Análisis de Economía Política (Censo Económico 2024)
 
 Este documento describe las métricas calculadas para analizar la relación entre el trabajo, el capital y la plusvalía en los subsectores económicos de México, utilizando el esquema de base de datos del CE2024.
 
