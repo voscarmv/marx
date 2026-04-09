@@ -1,0 +1,89 @@
+SECTOR,NOMBRE_SECTOR,SUBSECTOR,NOMBRE_SUBSECTOR,ESTABLECIMIENTOS,PERSONAL_OCUPADO,TASA_EXPLOTACION,TASA_GANANCIA_NETA,HRS_PARA_SALARIO,HRS_PARA_INFRAESTRUCTURA,HRS_PLUSVALIA_NETA,COSTO_INFRAESTRUCTURA_MDP,PLUSVALIA_NETA_MDP
+46,Comercio al por menor,461,"Comercio al por menor de abarrotes, alimentos, bebidas, hielo y tabaco",1141072,2276242,644.84%,121.94%,1.07,0.33,6.6,16621.57,333917.9
+72,Servicios de alojamiento temporal y de preparación de alimentos y bebidas,722,Servicios de preparación de alimentos y bebidas,722635,2578079,230.02%,85.5%,2.42,0.27,5.3,14729.92,284112.51
+81,Otros servicios excepto actividades gubernamentales,811,Servicios de reparación y mantenimiento,408713,921305,262.36%,58.98%,2.21,0.55,5.24,9653.24,92140.6
+81,Otros servicios excepto actividades gubernamentales,812,Servicios personales,363093,626000,306.53%,60.04%,1.97,0.53,5.5,4874.56,50495.98
+46,Comercio al por menor,465,"Comercio al por menor de artículos de papelería, para el esparcimiento y otros artículos de uso personal",354184,720874,298.92%,94.31%,2.01,0.33,5.67,4900.32,85481.71
+46,Comercio al por menor,463,"Comercio al por menor de productos textiles, bisutería, accesorios de vestir y calzado",299941,668572,296.63%,77.28%,2.02,0.54,5.44,9217.7,92930.57
+31-33,Industrias manufactureras,311,Industria alimentaria,223412,1214261,419.64%,104.96%,1.54,0.27,6.19,28435.13,642309.34
+62,Servicios de salud y de asistencia social,621,Servicios médicos de consulta externa y servicios relacionados,213193,535504,238.7%,49.3%,2.36,0.68,4.96,9861.22,71652.56
+46,Comercio al por menor,466,"Comercio al por menor de enseres domésticos, computadoras, artículos para la decoración de interiores y artículos usados",196422,479062,286.39%,106.59%,2.07,0.31,5.62,4086.13,74627.77
+46,Comercio al por menor,467,"Comercio al por menor de artículos de ferretería, tlapalería y vidrios",165545,496846,334.13%,81.39%,1.84,0.49,5.66,9435.29,108341.37
+46,Comercio al por menor,464,Comercio al por menor de artículos para el cuidado de la salud,115786,442556,188.93%,100.24%,2.77,0.19,5.04,2939.38,77383.31
+54,"Servicios profesionales, científicos y técnicos",541,"Servicios profesionales, científicos y técnicos",106064,680712,230.13%,109.05%,2.42,0.28,5.3,6636.16,127502.37
+46,Comercio al por menor,468,"Comercio al por menor de vehículos de motor, refacciones, combustibles y lubricantes",105278,721158,471.24%,115.25%,1.4,0.31,6.28,20171.35,402526
+43,Comercio al por mayor,434,"Comercio al por mayor de materias primas agropecuarias y forestales, para la industria, y materiales de desecho",91875,584424,561.81%,51.03%,1.21,0.94,5.85,56829.32,352942
+31-33,Industrias manufactureras,332,Fabricación de productos metálicos,76721,500045,211.85%,44.9%,2.57,0.53,4.91,15677.31,145191.03
+61,Servicios educativos,611,Servicios educativos,53534,776869,76.59%,24.31%,4.53,0.43,3.04,10330.46,73440.81
+56,"Servicios de apoyo a los negocios y manejo de residuos, y servicios de remediación",561,Servicios de apoyo a los negocios,53383,758561,189.59%,65.12%,2.76,0.43,4.81,13551.56,152217.06
+53,Servicios inmobiliarios y de alquiler de bienes muebles e intangibles,531,Servicios inmobiliarios,51443,208910,530.3%,47.66%,1.27,0.76,5.97,8434.05,66567.62
+71,"Servicios de esparcimiento culturales y deportivos, y otros servicios recreativos",713,Servicios de entretenimiento en instalaciones recreativas y otros servicios recreativos,49912,220420,227.03%,36.66%,2.45,0.66,4.89,5646.79,41693.78
+46,Comercio al por menor,462,Comercio al por menor en tiendas de autoservicio y departamentales,47044,1015559,212.23%,76.32%,2.56,0.33,5.11,22142.81,341305.63
+31-33,Industrias manufactureras,314,"Fabricación de productos textiles, excepto prendas de vestir",46963,108710,135.4%,49.19%,3.4,0.35,4.25,779.83,9343.05
+31-33,Industrias manufactureras,315,Fabricación de prendas de vestir,44612,296915,107.9%,48.66%,3.85,0.28,3.88,2041.9,28761.94
+31-33,Industrias manufactureras,321,Industria de la madera,37311,123826,174.53%,52.31%,2.91,0.47,4.62,1602.99,15732.11
+31-33,Industrias manufactureras,327,Fabricación de productos a base de minerales no metálicos,35271,241779,272.49%,47.32%,2.15,0.57,5.28,11048.06,101591.18
+31-33,Industrias manufactureras,312,Industria de las bebidas y del tabaco,33008,215757,682.04%,191.69%,1.02,0.19,6.79,6528.38,232643.81
+31-33,Industrias manufactureras,337,"Fabricación de muebles, colchones y persianas",31524,193949,131.84%,45.91%,3.45,0.45,4.1,2970.65,27000.95
+72,Servicios de alojamiento temporal y de preparación de alimentos y bebidas,721,Servicios de alojamiento temporal,27283,438724,198.02%,18.71%,2.68,1,4.32,17772.23,76781.05
+53,Servicios inmobiliarios y de alquiler de bienes muebles e intangibles,532,Servicios de alquiler de bienes muebles,27044,123019,296.08%,41.18%,2.02,1.11,4.87,5827.88,25636.98
+43,Comercio al por mayor,431,"Comercio al por mayor de abarrotes, alimentos, bebidas, hielo y tabaco",25865,700364,544.66%,184.61%,1.24,0.24,6.52,19468.32,533550.85
+43,Comercio al por mayor,435,"Comercio al por mayor de maquinaria, equipo y mobiliario para actividades agropecuarias, industriales, de servicios y comerciales, y de otra maquinaria y equipo de uso general",24922,290679,517.96%,81.66%,1.29,0.51,6.19,18949.02,229459.59
+62,Servicios de salud y de asistencia social,624,Otros servicios de asistencia social,24822,133166,81.06%,30.68%,4.42,0.43,3.16,503.44,3729.11
+81,Otros servicios excepto actividades gubernamentales,813,Asociaciones y organizaciones,23555,132711,146.17%,31.6%,3.25,0.67,4.08,1296.05,7828.16
+31-33,Industrias manufactureras,339,Otras industrias manufactureras,20630,339454,108.45%,46.26%,3.84,0.29,3.88,4832.04,65456.76
+11,"Agricultura, cría y explotación de animales, aprovechamiento forestal, pesca y caza (Solo Pesca y Acuicultura)",114,"Pesca, caza y captura",20152,189091,247.79%,45.15%,2.3,1.1,4.6,3686.41,15381.28
+31-33,Industrias manufactureras,323,Impresión e industrias conexas,20075,130048,174.67%,42.73%,2.91,0.55,4.54,3078.4,25296.13
+52,Servicios financieros y de seguros,522,Instituciones de intermediación crediticia y financiera no bursátil,18259,484325,374.12%,180.95%,1.69,0.21,6.1,26456.95,776254.36
+31-33,Industrias manufactureras,313,Fabricación de insumos textiles y acabado de textiles,17831,109528,191.04%,43.55%,2.75,0.48,4.77,2326.62,23087.15
+31-33,Industrias manufactureras,316,"Curtido y acabado de cuero y piel, y fabricación de productos de cuero, piel y materiales sucedáneos",13154,149609,126.87%,53.45%,3.53,0.31,4.17,1515.78,20450.89
+31-33,Industrias manufactureras,322,Industria del papel,8259,170983,248.17%,52.56%,2.3,0.47,5.24,7530.91,84381.32
+48-49,"Transportes, correos y almacenamiento",488,Servicios relacionados con el transporte,7977,297550,231.61%,58.18%,2.41,0.57,5.02,12330.51,108895.85
+48-49,"Transportes, correos y almacenamiento",484,Autotransporte de carga,7595,447044,150.37%,12.01%,3.2,2.63,2.17,47526.16,39213.07
+23,Construcción,236,Edificación,7170,347124,203.73%,72.07%,2.63,0.33,5.04,4756.97,73161.85
+43,Comercio al por mayor,433,"Comercio al por mayor de productos farmacéuticos, de perfumería, artículos para el esparcimiento, electrodomésticos menores y aparatos de línea blanca",7115,115092,486.45%,169.12%,1.36,0.24,6.4,2806.78,76366.09
+31-33,Industrias manufactureras,326,Industria del plástico y del hule,7065,458784,187.22%,47.49%,2.79,0.49,4.73,16750.6,162324.8
+31-33,Industrias manufactureras,325,Industria química,6809,286099,434.42%,78.02%,1.5,0.41,6.1,19911.07,297447.06
+23,Construcción,238,Trabajos especializados para la construcción,6712,95350,158.53%,51.04%,3.09,0.54,4.36,2014.61,16135.44
+43,Comercio al por mayor,432,Comercio al por mayor de productos textiles y calzado,5896,47586,450.45%,165.65%,1.45,0.21,6.34,717.97,22023.61
+52,Servicios financieros y de seguros,524,"Compañías de seguros, fianzas, y administración de fondos para el retiro",5088,139806,495.91%,239.22%,1.34,0.1,6.56,2281.38,155879.41
+71,"Servicios de esparcimiento culturales y deportivos, y otros servicios recreativos",711,"Servicios artísticos, culturales y deportivos, y otros servicios relacionados",5088,37880,309.12%,92.62%,1.96,0.27,5.77,620.96,13208.12
+48-49,"Transportes, correos y almacenamiento",485,"Transporte terrestre de pasajeros, excepto por ferrocarril",4709,287685,95.11%,6.66%,4.1,2.31,1.59,26918.06,18590.8
+62,Servicios de salud y de asistencia social,623,Residencias de asistencia social y para el cuidado de la salud,3929,31570,69.56%,16.16%,4.72,0.77,2.51,392.19,1268.79
+31-33,Industrias manufactureras,333,Fabricación de maquinaria y equipo,3916,233161,229.99%,73.77%,2.42,0.29,5.28,6578.16,117768.87
+52,Servicios financieros y de seguros,523,"Actividades bursátiles, cambiarias y de inversión financiera",3912,19412,340.48%,197.69%,1.82,0.11,6.08,475.7,27309.3
+43,Comercio al por mayor,436,"Comercio al por mayor de camiones y de partes y refacciones nuevas para automóviles, camionetas y camiones",3878,60841,442.07%,91.79%,1.48,0.49,6.03,2307.71,28202.08
+31-33,Industrias manufactureras,336,Fabricación de equipo de transporte,3644,1491778,442.34%,90.27%,1.48,0.31,6.21,65856.33,1312435.95
+23,Construcción,237,Construcción de obras de ingeniería civil,3556,269079,261.88%,91.92%,2.21,0.25,5.54,5444.95,122229.28
+11,"Agricultura, cría y explotación de animales, aprovechamiento forestal, pesca y caza (Solo Pesca y Acuicultura)",112,Cría y explotación de animales,3321,30407,358.24%,35.22%,1.75,0.79,5.46,1103.46,7603.88
+22,"Generación, transmisión, distribución y comercialización de energía eléctrica, suministro de agua y de gas natural por ductos al consumidor final",221,"Generación, transmisión, distribución y comercialización de energía eléctrica, suministro de agua y de gas natural por ductos al consumidor final",3139,231195,785.47%,7.88%,0.9,2.55,4.55,112903.97,201887.18
+51,Información en medios masivos,517,Telecomunicaciones,3123,168337,224.48%,7.62%,2.47,2.85,2.69,66552.08,62758.15
+62,Servicios de salud y de asistencia social,622,Hospitales,3090,171320,128.99%,44.14%,3.49,0.41,4.1,2748.58,27502.61
+21,Minería,212,"Minería de minerales metálicos y no metálicos, excepto petróleo y gas",2768,110858,720.97%,35.35%,0.97,1.25,5.77,24801.05,114066.76
+48-49,"Transportes, correos y almacenamiento",492,Servicios de mensajería y paquetería,2066,98959,108.27%,45.27%,3.84,0.63,3.53,1733.43,9720.14
+51,Información en medios masivos,516,Radio y televisión y provisión de contenido,1698,44159,594.62%,166.56%,1.15,0.21,6.64,766.72,24011.49
+31-33,Industrias manufactureras,331,Industrias metálicas básicas,1605,149031,614.92%,61.76%,1.12,0.48,6.4,15626.23,207503.65
+51,Información en medios masivos,512,"Industria fílmica y del video, e industria del sonido",1537,40604,361.69%,147.67%,1.73,0.17,6.1,685.77,24334.33
+11,"Agricultura, cría y explotación de animales, aprovechamiento forestal, pesca y caza (Solo Pesca y Acuicultura)",115,Servicios relacionados con las actividades agropecuarias y forestales,1511,23314,185.95%,54.26%,2.8,0.56,4.65,463.86,3877.7
+56,"Servicios de apoyo a los negocios y manejo de residuos, y servicios de remediación",562,Manejo de residuos y servicios de remediación,1475,37814,235.05%,50.38%,2.39,0.84,4.77,1884.73,10647.2
+31-33,Industrias manufactureras,335,"Fabricación de accesorios, aparatos eléctricos y equipo de generación de energía eléctrica",1222,278351,258.39%,94.47%,2.23,0.21,5.56,5817.67,153436.61
+48-49,"Transportes, correos y almacenamiento",493,Servicios de almacenamiento,1188,31291,267.6%,37.94%,2.18,0.81,5.01,1687.11,10387.91
+51,Información en medios masivos,513,"Edición de periódicos, revistas, libros, directorios, software y otros materiales",1118,39333,113.58%,63.59%,3.75,0.19,4.07,311.47,6690.93
+31-33,Industrias manufactureras,334,"Fabricación de equipo de computación, comunicación, medición y de otros equipos, componentes y accesorios electrónicos",898,453299,95.97%,49.14%,4.08,0.2,3.71,5506.6,100599.08
+71,"Servicios de esparcimiento culturales y deportivos, y otros servicios recreativos",712,"Museos, sitios históricos, zoológicos y similares",889,11406,120.51%,21.01%,3.63,0.85,3.52,306.2,1272.07
+48-49,"Transportes, correos y almacenamiento",487,Transporte turístico,853,11368,377.18%,63.65%,1.68,0.89,5.43,705.56,4293.03
+46,Comercio al por menor,469,"Intermediación de comercio al por menor, y comercio al por menor a través de catálogos impresos, televisión y similares",740,19672,235.64%,173.76%,2.38,0.08,5.53,80.19,5415.54
+51,Información en medios masivos,519,"Bibliotecas, archivos, portales de búsqueda en la red y otros servicios de suministro de información",379,1919,378.57%,147.43%,1.67,0.22,6.11,20.98,574.28
+55,Dirección y administración de grupos empresariales o corporativos,551,Dirección y administración de grupos empresariales o corporativos,339,124595,614.89%,321.04%,1.12,0.07,6.81,4984.51,488901.58
+31-33,Industrias manufactureras,324,Fabricación de productos derivados del petróleo y del carbón,318,44927,394.28%,37.45%,1.62,1.2,5.19,18139.9,78658.5
+48-49,"Transportes, correos y almacenamiento",483,Transporte por agua,267,6631,-21.36%,-8.18%,10.17,32.6,-34.78,4461.14,-4758.5
+43,Comercio al por mayor,437,Intermediación de comercio al por mayor,190,5089,199.27%,78.87%,2.67,0.64,4.69,120.32,879.17
+21,Minería,213,Servicios relacionados con la minería,158,20957,442.07%,46.06%,1.48,1.24,5.28,3058.64,13035.95
+51,Información en medios masivos,518,"Provisión de infraestructura de servicios de cómputo, procesamiento de datos, hospedaje de páginas de internet y otros servicios relacionados",144,13372,196.88%,153.22%,2.69,0.07,5.23,73.58,5293.04
+48-49,"Transportes, correos y almacenamiento",481,Transporte aéreo,113,37216,206.92%,129.82%,2.61,0.24,5.15,1697.3,36107.37
+53,Servicios inmobiliarios y de alquiler de bienes muebles e intangibles,533,"Servicios de alquiler de marcas registradas, patentes y franquicias",54,721,955.51%,138.77%,0.76,0.32,6.92,41.85,906.02
+48-49,"Transportes, correos y almacenamiento",486,Transporte por ductos,51,5057,947.02%,9.06%,0.76,3.44,3.8,10214.55,11288.34
+21,Minería,211,Extracción de petróleo y gas,34,35163,3903.7%,102.16%,0.2,0.98,6.82,113284.82,789393.88
+48-49,"Transportes, correos y almacenamiento",491,Servicios postales,32,,,,,,,,
+48-49,"Transportes, correos y almacenamiento",482,Transporte por ferrocarril,10,,,,,,,,
+52,Servicios financieros y de seguros,521,Banca central,1,3950,7547.41%,2239.11%,0.1,0.03,7.86,1006.15,232002.52
