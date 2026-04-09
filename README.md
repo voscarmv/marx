@@ -19,16 +19,29 @@ Para los cálculos se utilizan las siguientes columnas base:
 ### A. Plusvalía Neta (Sₙ)
 Es la masa de valor que queda en manos del capitalista después de pagar la fuerza de trabajo y cubrir los costos de mantenimiento de la infraestructura.
 * **Fórmula:** `A131A - J000A - Q000B`
+* **Implementación SQL (`query.js`):**
+  ```sql
+  ROUND(CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL) - CAST(d.Q000B AS REAL), 2) AS PLUSVALIA_NETA_MDP
+  ```
 * **Interpretación:** Es el excedente "limpio" generado por los trabajadores.
 
 ### B. Tasa de Explotación (Cuota de Plusvalía)
 Mide la proporción entre el trabajo excedente y el trabajo necesario.
 * **Fórmula:** $$(\frac{A131A - J000A}{J000A}) \times 100$$
+* **Implementación SQL (`query.js`):**
+  ```sql
+  ROUND(((CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL)) / NULLIF(CAST(d.J000A AS REAL), 0)) * 100, 2) || '%' AS TASA_EXPLOTACION
+  ```
 * **Interpretación:** Indica qué porcentaje de la riqueza creada por el trabajador es apropiada por el patrón en relación con lo que el trabajador recibe como salario.
 
 ### C. Tasa de Ganancia Neta
 Mide la rentabilidad real del capital invertido.
 * **Fórmula:** $$\frac{A131A - J000A - Q000B}{Q000A + J000A} \times 100$$
+* **Implementación SQL (`query.js`):**
+  ```sql
+  ROUND(((CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL) - CAST(d.Q000B AS REAL)) / 
+        NULLIF(CAST(d.Q000A AS REAL) + CAST(d.J000A AS REAL), 0)) * 100, 2) || '%' AS TASA_GANANCIA_NETA
+  ```
 * **Interpretación:** Relaciona la plusvalía neta con la inversión total (Capital Constante + Capital Variable).
 
 ---
@@ -41,14 +54,27 @@ Este análisis asume una jornada estándar para visualizar cómo se reparte el t
 
 #### I. Horas para Salario (Trabajo Necesario)
 * **Fórmula:** `(J000A / A131A) * 8`
+* **Implementación SQL (`query.js`):**
+  ```sql
+  ROUND((CAST(d.J000A AS REAL) / NULLIF(CAST(d.A131A AS REAL), 0)) * 8, 2) AS HRS_PARA_SALARIO
+  ```
 * **Descripción:** Tiempo que el trabajador tarda en producir un valor equivalente a su propio sueldo.
 
 #### II. Horas para Infraestructura (Costo Operativo)
 * **Fórmula:** `(Q000B / A131A) * 8`
+* **Implementación SQL (`query.js`):**
+  ```sql
+  ROUND((CAST(d.Q000B AS REAL) / NULLIF(CAST(d.A131A AS REAL), 0)) * 8, 2) AS HRS_PARA_INFRAESTRUCTURA
+  ```
 * **Descripción:** Tiempo de la jornada destinado exclusivamente a pagar el desgaste de las máquinas, rentas y mantenimiento técnico de la empresa.
 
 #### III. Horas de Plusvalía Neta (Trabajo Excedente)
 * **Fórmula:** `((A131A - J000A - Q000B) / A131A) * 8`
+* **Implementación SQL (`query.js`):**
+  ```sql
+  ROUND(((CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL) - CAST(d.Q000B AS REAL)) / 
+        NULLIF(CAST(d.A131A AS REAL), 0)) * 8, 2) AS HRS_PLUSVALIA_NETA
+  ```
 * **Descripción:** Horas que el trabajador labora "gratis" para el patrón, una vez cubiertos su salario y los costos operativos.
 
 ---
