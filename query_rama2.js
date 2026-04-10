@@ -20,29 +20,28 @@ SELECT
     TRIM(d.RAMA) AS RAMA,
     c3.DESC_CODIGO AS NOMBRE_RAMA,
     SUM(CAST(d.UE AS INTEGER)) AS ESTABLECIMIENTOS,
-    SUM(CAST(d.H001A AS INTEGER)) AS PERSONAL_OCUPADO,
     
-    -- 1. PLUSVALÍA NETA REAL (MDP)
-    -- Ingresos Totales - (Gastos Totales + Salarios)
-    -- Usamos M000A (Ingresos) para que la resta sea absoluta
+    -- 1. CÁLCULO DE PLUSVALÍA NETA (Lo que queda tras pagar TODO)
     ROUND(SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL))), 2) AS PLUSVALIA_NETA_MDP,
 
-    -- 2. TASA DE EXPLOTACIÓN CORREGIDA
-    -- (Plusvalía Neta / Salarios)
+    -- 2. DESGLOSE DE LA JORNADA DE 8 HORAS
+    -- A. Horas para el trabajador (Salario)
+    ROUND((SUM(CAST(d.J000A AS REAL)) / NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_SALARIO,
+    
+    -- B. Horas para mantener la empresa (Insumos, renta, luz - K000A)
+    ROUND((SUM(CAST(d.K000A AS REAL)) / NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_OPERACION,
+    
+    -- C. Horas para el Estado y Bancos (Impuestos y Financieros - A700A menos K000A)
+    ROUND(((SUM(CAST(d.A700A AS REAL)) - SUM(CAST(d.K000A AS REAL))) / 
+          NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_IMPUESTOS_Y_FINANZAS,
+    
+    -- D. Horas de Plusvalía (Ganancia limpia para el dueño)
     ROUND(((SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL)))) / 
-          NULLIF(SUM(CAST(d.J000A AS REAL)), 0)) * 100, 2) || '%' AS TASA_EXPLOTACION,
+          NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_PLUSVALIA_PURA,
 
-    -- 3. TASA DE GANANCIA (Rentabilidad sobre la inversión total)
-    -- Plusvalía Neta / (Acervo de Capital + Gastos + Salarios)
+    -- 3. TASAS DE RENDIMIENTO
     ROUND(((SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL)))) / 
-          NULLIF(SUM(CAST(d.Q000A AS REAL)) + SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL)), 0)) * 100, 2) || '%' AS TASA_GANANCIA_NETA,
-
-    -- 4. DESGLOSE DE LA JORNADA DE 8 HORAS (Sobre Ingresos Totales)
-    -- Cuánto tiempo de la jornada se va a cada rubro
-    ROUND((SUM(CAST(d.J000A AS REAL)) / NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_PARA_SALARIO,
-    ROUND((SUM(CAST(d.A700A AS REAL)) / NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_PARA_GASTOS_E_IMPUESTOS,
-    ROUND(((SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL)))) / 
-          NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_PLUSVALIA_PURA
+          NULLIF(SUM(CAST(d.J000A AS REAL)), 0)) * 100, 2) || '%' AS CUOTA_PLUSVALIA
 
 FROM conjunto_de_datos d
 LEFT JOIN tc_codigo_actividad c1 ON TRIM(d.SECTOR) = TRIM(c1.CODIGO)

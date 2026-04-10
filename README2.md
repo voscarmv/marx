@@ -1,86 +1,88 @@
+Aquí tienes el **README.md** definitivo. He actualizado las métricas para incluir el desglose cuádruple de la jornada laboral, separando específicamente el tiempo destinado a **impuestos y finanzas**, lo que permite un análisis mucho más fino frente a los contraargumentos clásicos.
+
+---
+
 # Análisis de Economía Política (Censo Económico 2024 - INEGI)
 
-Este proyecto implementa un modelo de análisis marxista y contable sobre los microdatos del Censo Económico 2024 de México. El objetivo es desglosar la creación de valor, identificando cuánto se destina a salarios, cuánto a costos operativos/impuestos y cuánto constituye la plusvalía neta.
+Este proyecto implementa un modelo de análisis basado en la economía política para los microdatos del Censo Económico 2024 de México. El objetivo es mapear las categorías contables del INEGI a las categorías de capital y plusvalía, permitiendo visualizar la distribución real de la riqueza generada.
 
 ## 1. Variables Fuente (INEGI)
 
 Para los cálculos se utilizan las siguientes columnas base del diccionario de datos:
 
-| Columna | Nombre Original INEGI | Concepto Marxista | Descripción |
+| Columna | Nombre Original INEGI | Concepto Económico | Descripción |
 | :--- | :--- | :--- | :--- |
-| `M000A` | Ingresos totales | **Producción Total** | El valor bruto total generado antes de cualquier deducción. |
-| `J000A` | Total de remuneraciones | **Capital Variable ($v$)** | Salarios, prestaciones y cuotas de seguridad social pagadas. |
-| `A700A` | Total de gastos | **Costos Externos** | Insumos, rentas, servicios, intereses e **impuestos**. |
-| `Q000A` | Acervo total de activos fijos | **Capital Constante ($c_{fijo}$)** | Inversión total en maquinaria, edificios y herramientas. |
-| `Q000B` | Depreciación total | **Consumo de Capital** | Valor transferido al producto por el desgaste de la infraestructura. |
+| `M000A` | Ingresos totales | **Producción Total** | El valor bruto total generado por la unidad económica. |
+| `J000A` | Total de remuneraciones | **Capital Variable ($v$)** | Salarios, prestaciones y cuotas de seguridad social. |
+| `K000A` | Gastos por consumo | **Capital Circulante** | Costos de operación (materias primas, renta, luz, etc.). |
+| `A700A` | Total de gastos | **Gastos Totales** | Incluye `K000A` + Impuestos, intereses y donaciones. |
+| `Q000A` | Acervo de activos fijos | **Capital Constante ($c$)** | Inversión en maquinaria, edificios y equipo. |
 
 ---
 
 ## 2. Columnas Calculadas y Fórmulas
 
-### A. Plusvalía Neta ($S_n$)
-Es la masa de valor que queda en manos del capitalista después de pagar la fuerza de trabajo y cubrir todos los gastos operativos, financieros y fiscales.
+### A. Plusvalía Neta Real ($S_n$)
+Es el excedente que queda tras cubrir la nómina (`J000A`) y todos los gastos operativos y fiscales (`A700A`).
 * **Fórmula:** `M000A - (J000A + A700A)`
-* **Interpretación:** Es la utilidad neta real. Al restar `A700A`, se incluyen los impuestos y costos operativos, respondiendo a los contraargumentos comunes sobre la carga fiscal del empresario.
 
-### B. Tasa de Explotación (Cuota de Plusvalía)
-Mide la proporción entre el trabajo excedente (ganancia) y el trabajo necesario (salario).
-* **Fórmula:** $$\frac{M000A - (J000A + A700A)}{J000A} \times 100$$
-* **Interpretación:** Indica qué porcentaje del valor que se queda el patrón representa respecto a lo que se le paga al trabajador.
+### B. Carga Fiscal y Financiera ($T$)
+Representa la parte del valor generado que se transfiere al Estado (impuestos) o al sector bancario (intereses).
+* **Fórmula:** `A700A - K000A`
 
-### C. Tasa de Ganancia Neta
-Mide la rentabilidad real sobre todo el capital invertido (maquinaria + gastos de operación + salarios).
-* **Fórmula:** $$\frac{M000A - (J000A + A700A)}{Q000A + A700A + J000A} \times 100$$
+### C. Cuota de Plusvalía (Tasa de Explotación)
+Mide la relación entre la ganancia neta del capitalista y el salario del trabajador.
+* **Fórmula:** $$\frac{S_n}{J000A} \times 100$$
 
 ---
 
 ## 3. Desglose de la Jornada Laboral (8 Horas)
 
-Este modelo permite visualizar cómo se reparte el tiempo de vida del trabajador en un turno estándar.
+Este modelo divide las 8 horas de un turno estándar en cuatro rubros para entender a dónde va el esfuerzo del trabajador:
 
 
 
 #### I. Horas para Salario (Trabajo Necesario)
 * **Fórmula:** `(J000A / M000A) * 8`
-* **Descripción:** Tiempo que el trabajador labora para generar el valor de su propio sueldo y prestaciones.
+* **Descripción:** Tiempo necesario para producir el valor de su propio sueldo.
 
-#### II. Horas para Gastos e Impuestos (Mantenimiento del Sistema)
-* **Fórmula:** `(A700A / M000A) * 8`
-* **Descripción:** Tiempo destinado a pagar insumos, servicios externos, rentas y las obligaciones fiscales (impuestos) de la unidad económica.
+#### II. Horas para Operación (Reposición de Insumos)
+* **Fórmula:** `(K000A / M000A) * 8`
+* **Descripción:** Tiempo para pagar los materiales, servicios y mantenimientos de la empresa.
 
-#### III. Horas de Plusvalía Neta (Trabajo Excedente)
-* **Fórmula:** `((M000A - (J000A + A700A)) / M000A) * 8`
-* **Descripción:** Horas que el trabajador labora "gratis" para el dueño, una vez descontados su salario y todos los costos de operación.
+#### III. Horas para Impuestos y Finanzas (El Estado/Bancos)
+* **Fórmula:** `((A700A - K000A) / M000A) * 8`
+* **Descripción:** Tiempo destinado exclusivamente a cubrir la carga fiscal y los costos financieros.
+
+#### IV. Horas de Plusvalía Pura (Ganancia Neta)
+* **Fórmula:** `(S_n / M000A) * 8`
+* **Descripción:** Tiempo de trabajo excedente que se traduce en utilidad limpia para el propietario.
 
 ---
 
-## 4. Instrucciones de Ejecución
+## 4. Ejecución del Proyecto
 
-1. **Requisitos:** Tener instalado [Node.js](https://nodejs.org/).
-2. **Instalación de Librerías:**
+1. **Instalación:**
    ```bash
    npm install sqlite3 csv-parser
    ```
-3. **Paso 1: Cargar Datos:** Construye la base relacional `datos.db` a partir de los CSV del INEGI.
+2. **Importación:** Carga los archivos CSV a la base SQLite local.
    ```bash
    node load.js
    ```
-4. **Paso 2: Ejecutar Análisis:** Genera el reporte final en formato CSV.
+3. **Reporte:** Genera el análisis por rama económica.
    ```bash
-   node query.js > reporte_economia_politica.csv
+   node query.js > reporte_final.csv
    ```
 
----
-
 ## 5. Ejemplo de Interpretación
-Si en un subsector (ej. Fabricación de equipo de transporte) el resultado es:
-* **HRS_PARA_SALARIO:** 1.0 hrs
-* **HRS_PARA_GASTOS_IMPUESTOS:** 3.0 hrs
-* **HRS_PLUSVALIA_NETA:** 4.0 hrs
+Si un subsector arroja:
+* **HRS_SALARIO:** 1.0 hr
+* **HRS_OPERACION:** 2.5 hrs
+* **HRS_IMPUESTOS:** 0.5 hrs
+* **HRS_PLUSVALIA:** 4.0 hrs
 
-**Conclusión:** El trabajador "se paga solo" en la primera hora de su turno. Las siguientes 3 horas mantiene la fábrica funcionando y paga los impuestos al Estado. Las últimas **4 horas** de la jornada genera riqueza neta para el capitalista.
+**Conclusión:** El trabajador tarda 1 hora en ganar su sueldo, 2.5 horas en pagar los gastos de la fábrica y media hora en pagar los impuestos al gobierno. Las **4 horas restantes** (la mitad de su turno) trabaja gratis para generar utilidad neta al dueño.
 
 ---
-**Fuentes:**
-- INEGI: Censos Económicos 2024.
-- Metodología: El Capital (Karl Marx) adaptado a Contabilidad Nacional moderna.
+**Fuente:** Metodología adaptada de Karl Marx con datos oficiales de los Censos Económicos 2024 (INEGI).
