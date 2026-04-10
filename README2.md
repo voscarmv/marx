@@ -1,7 +1,3 @@
-Aquí tienes el archivo **README.md** completo, corregido y listo para usar. He unificado las fórmulas de Marx con la realidad de los datos del INEGI (incluyendo los impuestos y gastos operativos que mencionabas) para que el análisis sea mucho más robusto.
-
----
-
 # Análisis de Economía Política (Censo Económico 2024 - INEGI)
 
 Este proyecto implementa un modelo de análisis marxista y contable sobre los microdatos del Censo Económico 2024 de México. El objetivo es desglosar la creación de valor, identificando cuánto se destina a salarios, cuánto a costos operativos/impuestos y cuánto constituye la plusvalía neta.
