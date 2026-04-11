@@ -1,7 +1,3 @@
-Aquí tienes el **README.md** definitivo. He actualizado las métricas para incluir el desglose cuádruple de la jornada laboral, separando específicamente el tiempo destinado a **impuestos y finanzas**, lo que permite un análisis mucho más fino frente a los contraargumentos clásicos.
-
----
-
 # Análisis de Economía Política (Censo Económico 2024 - INEGI)
 
 Este proyecto implementa un modelo de análisis basado en la economía política para los microdatos del Censo Económico 2024 de México. El objetivo es mapear las categorías contables del INEGI a las categorías de capital y plusvalía, permitiendo visualizar la distribución real de la riqueza generada.
