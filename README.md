@@ -1,6 +1,6 @@
-# Análisis de Economía Política (Censo Económico 2024)
+# Análisis de Economía Política (Censo Económico 2024 - INEGI)
 
-Este documento describe las métricas calculadas para analizar la relación entre el trabajo, el capital y la plusvalía en los subsectores económicos de México, utilizando el esquema de base de datos del CE2024.
+Este proyecto implementa un modelo de análisis basado en la economía política para los microdatos del Censo Económico 2024 de México. El objetivo es mapear las categorías contables del INEGI a las categorías de capital y plusvalía, permitiendo visualizar la distribución real de la riqueza generada.
 
 ## Instalación y Configuración
 
@@ -26,99 +26,98 @@ Alternativamente, el proceso paso a paso es:
    ```
 2. **Ejecutar Modelo (Paso 2):** Lee la base de datos aplicando las métricas de este diccionario y genera un reporte tabular directo en CSV.
    ```bash
-   node query.js > reporte.csv
+   node query_rama2.js > reporte_final.csv
    ```
 
 ---
 
 ## 1. Variables Fuente (INEGI)
-Para los cálculos se utilizan las siguientes columnas base:
 
-| Columna | Nombre Original | Concepto Marxista | Descripción |
+Para los cálculos se utilizan las siguientes columnas base del diccionario de datos:
+
+| Columna | Nombre Original INEGI | Concepto Económico | Descripción |
 | :--- | :--- | :--- | :--- |
-| `A131A` | Valor Agregado Censal Bruto | **Nuevo Valor ($V + S$)** | Valor creado por la fuerza de trabajo tras descontar insumos. |
-| `J000A` | Total de Remuneraciones | **Capital Variable ($V$)** | Salarios, prestaciones y seguridad social pagada. |
-| `Q000A` | Acervo total de activos fijos | **Capital Constante ($C$)** | Valor de maquinaria, edificios y medios de producción. |
-| `Q000B` | Depreciación total | **Consumo de Capital** | Valor de la infraestructura que se transfiere al producto por desgaste. |
+| `M000A` | Ingresos totales | **Producción Total** | El valor bruto total generado por la unidad económica. |
+| `J000A` | Total de remuneraciones | **Capital Variable ($v$)** | Salarios, prestaciones y cuotas de seguridad social. |
+| `K000A` | Gastos por consumo | **Capital Circulante** | Costos de operación (materias primas, renta, luz, etc.). |
+| `A700A` | Total de gastos | **Gastos Totales** | Incluye `K000A` + Impuestos, intereses y donaciones. |
 
 ---
 
 ## 2. Columnas Calculadas y Fórmulas
 
-### A. Plusvalía Neta (Sₙ)
-Es la masa de valor que queda en manos del capitalista después de pagar la fuerza de trabajo y cubrir los costos de mantenimiento de la infraestructura.
-* **Fórmula:** `A131A - J000A - Q000B`
-* **Implementación SQL (`query.js`):**
+### A. Plusvalía Neta Real ($S_n$)
+Es el excedente que queda tras cubrir la nómina (`J000A`) y todos los gastos operativos y fiscales (`A700A`).
+* **Fórmula:** `M000A - (A700A + J000A)`
+* **Implementación SQL (`query_rama2.js`):**
   ```sql
-  ROUND(CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL) - CAST(d.Q000B AS REAL), 2) AS PLUSVALIA_NETA_MDP
+  ROUND(SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL))), 2) AS PLUSVALIA_NETA_MDP
   ```
-* **Interpretación:** Es el excedente "limpio" generado por los trabajadores.
 
-### B. Tasa de Explotación (Cuota de Plusvalía)
-Mide la proporción entre el trabajo excedente y el trabajo necesario.
-* **Fórmula:** $$(\frac{A131A - J000A}{J000A}) \times 100$$
-* **Implementación SQL (`query.js`):**
+### B. Cuota de Plusvalía (Tasa de Explotación)
+Mide la relación entre la ganancia neta del capitalista y el salario del trabajador.
+* **Fórmula:** $$\frac{S_n}{J000A} \times 100$$
+* **Implementación SQL (`query_rama2.js`):**
   ```sql
-  ROUND(((CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL)) / NULLIF(CAST(d.J000A AS REAL), 0)) * 100, 2) || '%' AS TASA_EXPLOTACION
+  ROUND(((SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL)))) / 
+        NULLIF(SUM(CAST(d.J000A AS REAL)), 0)) * 100, 2) || '%' AS CUOTA_PLUSVALIA
   ```
-* **Interpretación:** Indica qué porcentaje de la riqueza creada por el trabajador es apropiada por el patrón en relación con lo que el trabajador recibe como salario.
-
-### C. Tasa de Ganancia Neta
-Mide la rentabilidad real del capital invertido.
-* **Fórmula:** $$\frac{A131A - J000A - Q000B}{Q000A + J000A} \times 100$$
-* **Implementación SQL (`query.js`):**
-  ```sql
-  ROUND(((CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL) - CAST(d.Q000B AS REAL)) / 
-        NULLIF(CAST(d.Q000A AS REAL) + CAST(d.J000A AS REAL), 0)) * 100, 2) || '%' AS TASA_GANANCIA_NETA
-  ```
-* **Interpretación:** Relaciona la plusvalía neta con la inversión total (Capital Constante + Capital Variable).
 
 ---
 
 ## 3. Desglose de la Jornada Laboral (8 Horas)
 
-Este análisis asume una jornada estándar para visualizar cómo se reparte el tiempo de vida del trabajador.
-
-
+Este modelo divide las 8 horas de un turno estándar en cuatro rubros para entender a dónde va el esfuerzo del trabajador:
 
 #### I. Horas para Salario (Trabajo Necesario)
-* **Fórmula:** `(J000A / A131A) * 8`
-* **Implementación SQL (`query.js`):**
+* **Fórmula:** `(J000A / M000A) * 8`
+* **Implementación SQL (`query_rama2.js`):**
   ```sql
-  ROUND((CAST(d.J000A AS REAL) / NULLIF(CAST(d.A131A AS REAL), 0)) * 8, 2) AS HRS_PARA_SALARIO
+  ROUND((SUM(CAST(d.J000A AS REAL)) / NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_SALARIO
   ```
-* **Descripción:** Tiempo que el trabajador tarda en producir un valor equivalente a su propio sueldo.
+* **Descripción:** Tiempo necesario para producir el valor de su propio sueldo.
 
-#### II. Horas para Infraestructura (Costo Operativo)
-* **Fórmula:** `(Q000B / A131A) * 8`
-* **Implementación SQL (`query.js`):**
+#### II. Horas para Operación (Reposición de Insumos)
+* **Fórmula:** `(K000A / M000A) * 8`
+* **Implementación SQL (`query_rama2.js`):**
   ```sql
-  ROUND((CAST(d.Q000B AS REAL) / NULLIF(CAST(d.A131A AS REAL), 0)) * 8, 2) AS HRS_PARA_INFRAESTRUCTURA
+  ROUND((SUM(CAST(d.K000A AS REAL)) / NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_OPERACION
   ```
-* **Descripción:** Tiempo de la jornada destinado exclusivamente a pagar el desgaste de las máquinas, rentas y mantenimiento técnico de la empresa.
+* **Descripción:** Tiempo para pagar los materiales, servicios y mantenimientos de la empresa.
 
-#### III. Horas de Plusvalía Neta (Trabajo Excedente)
-* **Fórmula:** `((A131A - J000A - Q000B) / A131A) * 8`
-* **Implementación SQL (`query.js`):**
+#### III. Horas para Impuestos y Finanzas (El Estado/Bancos)
+* **Fórmula:** `((A700A - K000A) / M000A) * 8`
+* **Implementación SQL (`query_rama2.js`):**
   ```sql
-  ROUND(((CAST(d.A131A AS REAL) - CAST(d.J000A AS REAL) - CAST(d.Q000B AS REAL)) / 
-        NULLIF(CAST(d.A131A AS REAL), 0)) * 8, 2) AS HRS_PLUSVALIA_NETA
+  ROUND(((SUM(CAST(d.A700A AS REAL)) - SUM(CAST(d.K000A AS REAL))) / 
+        NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_IMPUESTOS_Y_FINANZAS
   ```
-* **Descripción:** Horas que el trabajador labora "gratis" para el patrón, una vez cubiertos su salario y los costos operativos.
+* **Descripción:** Tiempo destinado exclusivamente a cubrir la carga fiscal y los costos financieros.
+
+#### IV. Horas de Plusvalía Pura (Ganancia Neta)
+* **Fórmula:** `(S_n / M000A) * 8`
+* **Implementación SQL (`query_rama2.js`):**
+  ```sql
+  ROUND(((SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL)))) / 
+        NULLIF(SUM(CAST(d.M000A AS REAL)), 0)) * 8, 2) AS HRS_PLUSVALIA_PURA
+  ```
+* **Descripción:** Tiempo de trabajo excedente que se traduce en utilidad limpia para el propietario.
 
 ---
 
 ## 4. Ejemplo de Interpretación
-Si en un subsector el resultado es:
-* **HRS_PARA_SALARIO:** 1.5 hrs
-* **HRS_PARA_INFRAESTRUCTURA:** 0.5 hrs
-* **HRS_PLUSVALIA_NETA:** 6.0 hrs
+Si un subsector arroja:
+* **HRS_SALARIO:** 1.0 hr
+* **HRS_OPERACION:** 2.5 hrs
+* **HRS_IMPUESTOS_Y_FINANZAS:** 0.5 hrs
+* **HRS_PLUSVALIA_PURA:** 4.0 hrs
 
-**Conclusión:** El trabajador "se paga solo" en los primeros 90 minutos de su turno; los siguientes 30 minutos mantiene la fábrica, y las últimas **6 horas** genera riqueza pura para el accionista o dueño.
+**Conclusión:** El trabajador tarda 1 hora en ganar su sueldo, 2.5 horas en pagar los gastos de la fábrica y media hora en pagar los impuestos al gobierno. Las **4 horas restantes** (la mitad de su turno) trabaja gratis para generar utilidad neta al dueño.
 
-Estos datos reales para México están en el archivo `datos.csv` en este repositorio.
+Estos datos reales para México están en el archivo `rama2.csv` en este repositorio.
 
 ## 5. Fuentes
 
+- Metodología adaptada de Karl Marx con datos oficiales de los Censos Económicos 2024 (INEGI).
 - https://www.inegi.org.mx/programas/ce/2024/#datos_abiertos
 - https://www.inegi.org.mx/contenidos/programas/ce/2024/datosabiertos/conjunto_de_datos_ce_nac_2024_csv.zip
