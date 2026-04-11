@@ -8,7 +8,7 @@ Este proyecto implementa un modelo de análisis basado en la economía política
 2. **Descargar Dependencias:**
    Ejecuta el siguiente comando para instalar las librerías necesarias de SQLite3 y de parseo veloz de streams:
    ```bash
-   npm install sqlite3 csv-parser
+   npm install
    ```
 3. **Colocar Datos Fuente:** Asegúrate de que la carpeta de datos extraídos del INEGI (`conjunto_de_datos_ce_nac_2024_csv`) exista en la ruta base del proyecto.
 
@@ -26,7 +26,7 @@ Alternativamente, el proceso paso a paso es:
    ```
 2. **Ejecutar Modelo (Paso 2):** Lee la base de datos aplicando las métricas de este diccionario y genera un reporte tabular directo en CSV.
    ```bash
-   node query_rama2.js > reporte_final.csv
+   node query_rama2.js > rama2.csv
    ```
 
 ---
@@ -41,6 +41,7 @@ Para los cálculos se utilizan las siguientes columnas base del diccionario de d
 | `J000A` | Total de remuneraciones | **Capital Variable ($v$)** | Salarios, prestaciones y cuotas de seguridad social. |
 | `K000A` | Gastos por consumo | **Capital Circulante** | Costos de operación (materias primas, renta, luz, etc.). |
 | `A700A` | Total de gastos | **Gastos Totales** | Incluye `K000A` + Impuestos, intereses y donaciones. |
+| `Q000A` | Acervo de activos fijos | **Capital Constante ($c$)** | Inversión en maquinaria, edificios y equipo. |
 
 ---
 
@@ -54,7 +55,11 @@ Es el excedente que queda tras cubrir la nómina (`J000A`) y todos los gastos op
   ROUND(SUM(CAST(d.M000A AS REAL)) - (SUM(CAST(d.A700A AS REAL)) + SUM(CAST(d.J000A AS REAL))), 2) AS PLUSVALIA_NETA_MDP
   ```
 
-### B. Cuota de Plusvalía (Tasa de Explotación)
+### B. Carga Fiscal y Financiera ($T$)
+Representa la parte del valor generado que se transfiere al Estado (impuestos) o al sector bancario (intereses).
+* **Fórmula:** `A700A - K000A`
+
+### C. Cuota de Plusvalía (Tasa de Explotación)
 Mide la relación entre la ganancia neta del capitalista y el salario del trabajador.
 * **Fórmula:** $$\frac{S_n}{J000A} \times 100$$
 * **Implementación SQL (`query_rama2.js`):**
